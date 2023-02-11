@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: npm start
+    volumes:
+      - .:/app
+  web:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8008:80"
+    depends_on:
+      - app
